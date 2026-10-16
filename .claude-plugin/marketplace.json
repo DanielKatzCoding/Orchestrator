@@ -1,0 +1,12 @@
+{
+  "name": "pi-orchestrator-marketplace",
+  "owner": { "name": "DanielKatzCoding" },
+  "description": "Marketplace for the pi-orchestrator Claude Code plugin.",
+  "plugins": [
+    {
+      "name": "pi-orchestrator",
+      "source": ".",
+      "description": "Delegate coding work from Claude Code to specialist pi agents running in isolated sessions."
+    }
+  ]
+}
