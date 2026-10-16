@@ -1,0 +1,49 @@
+[project]
+name = "pi-orchestrator"
+version = "0.1.0"
+description = "An orchestrator agent built on the pi coding-agent framework, usable from the CLI and from Claude Code (MCP server + plugin)."
+readme = "README.md"
+requires-python = ">=3.11"
+keywords = ["agents", "orchestrator", "pi", "mcp", "claude-code"]
+dependencies = [
+    "mcp>=2.3,<3",
+    "pyyaml>=6.0",
+]
+
+[project.scripts]
+pi-orchestrator = "pi_orchestrator.cli:main"
+
+[dependency-groups]
+dev = [
+    "pytest>=9.0",
+    "pytest-asyncio>=1.0",
+    "ruff>=0.15",
+]
+
+[build-system]
+requires = ["hatchling>=1.27"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/pi_orchestrator"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "function"
+testpaths = ["tests"]
+markers = [
+    "real_pi: needs the real `pi` CLI on PATH (skipped otherwise)",
+]
+
+[tool.ruff]
+line-length = 120
+target-version = "py311"
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "UP", "B", "ASYNC", "RUF"]
+ignore = ["RUF001", "RUF002", "RUF003"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["pi_orchestrator"]
+known-local-folder = ["conftest"]

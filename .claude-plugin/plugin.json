@@ -1,0 +1,33 @@
+{
+  "name": "pi-orchestrator",
+  "version": "0.1.0",
+  "description": "Delegate coding work from Claude Code to specialist pi agents (scout, planner, worker, reviewer) running in isolated sessions on any model pi supports.",
+  "author": {
+    "name": "DanielKatzCoding"
+  },
+  "repository": "https://github.com/DanielKatzCoding/Orchestrator",
+  "keywords": [
+    "pi",
+    "orchestrator",
+    "sub-agents",
+    "delegation",
+    "mcp"
+  ],
+  "mcpServers": {
+    "orchestrator": {
+      "type": "stdio",
+      "command": "uv",
+      "args": [
+        "run",
+        "--quiet",
+        "--project",
+        "${CLAUDE_PLUGIN_ROOT}",
+        "pi-orchestrator",
+        "mcp"
+      ],
+      "env": {
+        "UV_PROJECT_ENVIRONMENT": "${CLAUDE_PLUGIN_DATA}/venv"
+      }
+    }
+  }
+}
